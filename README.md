@@ -25,7 +25,7 @@ Might be in some/many cheapo USB SD card readers, and stuff like that.
 ## Contents
 
 - [General info](infos.txt)
-- [SFR map](sfr.txt)
+- [SFR list](sfr.txt)
 - [SPIdrive](spidrive/index.md) - a flash drive that came with some mp3 strobo light thing
 
 ```
