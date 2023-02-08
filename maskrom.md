@@ -8,11 +8,11 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
 
 ### IDATA
 
-- 23, bit 0 = Use external handlers
+- 0x23, bit 0 = Use external handlers
 
 ### SRAM
 
-- 408-409 = Main loop handler (ROM: 0x6D2F)
+- 0x408-0x409 = Main loop handler (ROM: 0x6D2F)
 
 ## ROM functions
 
