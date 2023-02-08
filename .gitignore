@@ -1,0 +1,4 @@
+*.pdf
+*.bin
+
+!MaskROM.bin
