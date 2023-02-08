@@ -1,6 +1,6 @@
 # Appotech AX225
 
-The SD/MMC/MemoryStick card reader chip blop, the Appotech AX225.
+The SD/MMC/MemoryStick card reader chip blob, the Appotech AX225.
 
 Might be in some/many cheapo USB SD card readers, and stuff like that.
 
@@ -9,8 +9,8 @@ Might be in some/many cheapo USB SD card readers, and stuff like that.
 - Intel 8051-compatible "RISC" MCU
   - 48 MHz clock speed
   - Weird mapping of the 8051's DATA into the SRAM (consistent with other chips like AX2226, etc)
-  - No MUL/DIV instructions.
-  - XDATA and CODE is tied together, if not access the same thing..
+  - No MUL/DIV instructions. (and therefore, no 'B' register as well)
+  - XDATA and CODE is tied together..
   - Claims to have 7 interrupt vectors, but in ROM only ONE is used.
 - 12 KiB MaskROM
   - Basically contains the whole logic of the card reader
@@ -24,8 +24,8 @@ Might be in some/many cheapo USB SD card readers, and stuff like that.
 
 ## Contents
 
-- [General info](infos.txt)
-- [SFR list](sfr.txt)
+- [Internals info](infos.md)
+- [MaskROM](maskrom.md)
 - [SPIdrive](spidrive/index.md) - a flash drive that came with some mp3 strobo light thing
 
 ```
