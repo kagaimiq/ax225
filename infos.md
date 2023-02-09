@@ -13,21 +13,21 @@ The MCU is compatible with the Intel 8051 instruction set, althrough there is so
 The CODE/XDATA memory spaces are tied together so that
 a code fetch or a MOVC/MOVX returns the same data on the same address..
 
-| Range       | Size                | Usage                 |
-|-------------|---------------------|-----------------------|
-| 0000 - 3FFF | 1.5k, wraps each 2k | SRAM                  |
-| 4000 - FFFF | 12k, wraps each 16k | [MaskROM](maskrom.md) |
+| Range         | Size                | Usage                 |
+|---------------|---------------------|-----------------------|
+| 0x0000-0x3FFF | 1.5k, wraps each 2k | SRAM                  |
+| 0x4000-0xFFFF | 12k, wraps each 16k | [MaskROM](maskrom.md) |
 
 ### SRAM map:
 
 Unusually, the 8051's DATA/IDATA is mapped into the main SRAM, just like it happens
 with some other Appotech chips... (e.g. AX2226)
 
-| Range     | Usage                |
-|-----------|----------------------|
-| 000 - 4FF | Free                 |
-| 500 - 57F | 8051's IDATA (80-FF) |
-| 580 - 5FF | 8051's IDATA (00-7F) |
+| Range       | Usage                    |
+|-------------|--------------------------|
+| 0x000-0x4FF | Free                     |
+| 0x500-0x57F | 8051's IDATA (0x80-0xff) |
+| 0x580-0x5FF | 8051's IDATA (0x00-0x7f) |
 
 ## SFRs
 
