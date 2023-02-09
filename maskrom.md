@@ -10,6 +10,8 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
 
 - 0x22, bit 7 = 0x57C6 checks for the '0x55 0xaa' sign first, then reads out data
 - 0x23, bit 0 = Use handlers in SRAM 0x408-0x419
+- 0x24, bit 2 = USB speed (0 = fullspeed, 1 = highspeed)
+- 0x48-0x4F = setup packet storage
 - 0x67 = SPI flash bank (64k) from which it has booted from.
 
 ### SRAM
@@ -19,10 +21,16 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
 - 0x40C-0x40D = IRQ0 handler (overrides ROM: 0x4C97)
 - 0x40E-0x40F = .. overrides something in ROM: 0x6B83
 - 0x410-0x411 = .. overrides something in ROM: 0x6C86
-- 0x412-0x413 = USB x handler (overrides ROM: 0x5069)
-- 0x414-0x415 = USB x handler (overrides ROM: 0x50AF)
+- 0x412-0x413 = USB setup packet handler (overrides ROM: 0x5069)
+- 0x414-0x415 = USB GET_DESCRIPTOR handler (overrides ROM: 0x50AF)
 - 0x416-0x417 = card detect thing hook or like
 - 0x418-0x419 = received SCSI command hook
+- 0x41A-0x41B = .
+- 0x41C-0x41D = USB device descriptor (ROM: 0x534A)
+- 0x41E-0x41F = USB config descriptor (ROM: 0x537C)
+- 0x420-0x421 = USB string descriptor idx1/mfr (ROM: 0x5380)
+- 0x422-0x423 = USB string descriptor idx2/product (ROM: 0x5390)
+- 0x424-0x425 = USB string descriptor idx3/serial (ROM: 0x53AC)
 
 ## ROM symbols
 
@@ -36,7 +44,11 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
   * R6 <= dest start 8..15
   * R7 <= dest start 0..7
 
+- 0x59C2: USB EP1.OUT recv 512 bytes on fullspeed (called by 0x6F69)
+
 - 0x5A14: Main loop entrance
+
+- 0x5A64: USB EP1.IN send 512 bytes on fullspeed (called by 0x6EBC)
 
 - 0x5D4D: Store 4 bytes in XDATA
   * DPTR <= addr
@@ -73,14 +85,34 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
 
 - 0x6D2F: Main loop handler
 
+- 0x6D6A: USB EP1.IN send
+  * R6 <= size 8..15
+  * R7 <= size 0..7
+
 - 0x6D7F: Delay in milliseconds
   * R7 <= delay time (ms)
+
+- 0x6DB3: copy XDATA into IDATA
+  * R3 <= length
+  * R4 <= source addr 8..15
+  * R5 <= source addr 0..7
+  * R7 <= dest addr
 
 - 0x6DC4: USB indirect reg read
   * R7 <= address
   * R7 => data
 
 - 0x6EA0: Stuff initializations
+
+- 0x6EBC: USB EP1.IN send 512 bytes
+
+- 0x6F0B: USB EP1.IN wait for tx done
+
+- 0x6F18: USB EP1.OUT wait for rx done
+
+- 0x6F69: USB EP1.OUT receive 512 bytes
+
+- 0x6F8A: USB EP1.OUT reset rx status
 
 ### etc
 
@@ -140,6 +172,6 @@ Reads 4 bytes from arbitraty XDATA location.
 
 ### Reset or something like that
 
-This enters something, the opcode looks like it's related to a "reset" of some kind.
+Enters something..
 
 - Command: `FA FE 59 68 48 70`
