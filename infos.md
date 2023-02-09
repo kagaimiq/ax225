@@ -31,36 +31,36 @@ with some other Appotech chips... (e.g. AX2226)
 
 ## SFRs
 
-- sfrEF:
+- 0xEF:
 
   *set to 0x0F by the ROM in startup, #8*
 
-- sfrF1:
+- 0xF1:
 
   *set to 0xFC by the ROM on startup, #4*
 
-- sfrF2:
+- 0xF2:
 
   *set to 0x00 by the ROM on startup, #7*
 
-- sfrF3:
+- 0xF3:
 
   *set to 0x00 by the ROM on startup, #3*
 
-- sfrF4:
+- 0xF4:
   -  b1 = "SPI Flash SCK" level
   -  b2 = "SPI Flash MISO" level
   -  b3 = "SPI Flash MOSI" level
 
   *set to 0x0F by the ROM on startup, #5*
 
-- sfrF5:
+- 0xF5:
   -  b3 = "SPI Flash CS" level
   -  b6 = ?? level .. another CS?
 
   *set to 0xFC by the ROM on startup, #1*
 
-- sfrFC:
+- 0xFC:
   -  b1 = "SPI Flash SCK" direction
   -  b2 = "SPI Flash MISO" direction
   -  b3 = "SPI Flash MOSI" direction
@@ -68,13 +68,13 @@ with some other Appotech chips... (e.g. AX2226)
 
   *set to 0x0F by the ROM on startup, #6*
 
-- sfrFD:
+- 0xFD:
   -  b3 = "SPI Flash CS" direction
   -  b6 = ?? direction .. another CS?
   * 0 = output, 1 = input
 
   *set to 0xFC by the ROM on startup, #2*
 
-- sfrFE:
+- 0xFE:
   -  b1 = LED thingy, 0 == light up (driver enabled...)
   -  b4 = USB Soft-connect, 0 == connected
