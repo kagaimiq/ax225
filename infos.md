@@ -6,12 +6,12 @@ The MCU is compatible with the Intel 8051 instruction set, althrough there is so
 
 - There's no MUL/DIV instructions, and therefore no 'B' register at SFR 0xF0
 - the "AX225 Feature List" (ax225-fl-001) claims that it runs up to 48 MIPS (while running at 48 MHz),
-  implying that it has almost single-cycle instructions and stuff.
+  implying that it has (almost) single-cycle instructions.
+- The CODE and XDATA memory spaces are tied together, so that a code fetch or the MOVC instruction returns the same data that is accessed with the MOVX instruction.
+- The DATA/IDATA is shared with the SRAM, instead of having a dedicated memory area.
+  This is consistent with other Appotech/Buildwin chips such as AX2226, CW6631, etc.
 
 ## CODE/XDATA memory map
-
-The CODE/XDATA memory spaces are tied together so that
-a code fetch or a MOVC/MOVX returns the same data on the same address..
 
 | Range         | Size                | Usage                 |
 |---------------|---------------------|-----------------------|
@@ -19,9 +19,6 @@ a code fetch or a MOVC/MOVX returns the same data on the same address..
 | 0x4000-0xFFFF | 12k, wraps each 16k | [MaskROM](maskrom.md) |
 
 ### SRAM map:
-
-Unusually, the 8051's DATA/IDATA is mapped into the main SRAM, just like it happens
-with some other Appotech chips... (e.g. AX2226)
 
 | Range       | Usage                    |
 |-------------|--------------------------|
