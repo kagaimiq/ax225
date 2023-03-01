@@ -116,7 +116,7 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
 
 ### etc
 
-- 0x534A: USB device descriptor
+- 0x534A: USB device descriptor => VID 0x1908, PID 0x0225
 - 0x535C: USB configuration descriptor
 - 0x537C: USB string descriptor, index 0 => lang 0x409
 - 0x5380: USB string descriptor, index 1 => "Generic"
@@ -160,7 +160,7 @@ Reads 1024 bytes from the SRAM location 0x200, which retreives the 512 byte bloc
 a previous command, plus the range where the ROM's variables and the 8051's DATA resides in.
 
 - Command: `FA 04 -- -- -- --`
-- Data out: 1024 bytes of that that was read out
+- Data out: 1024 bytes of data that was read out
 
 ### Read 4 bytes from XDATA
 
