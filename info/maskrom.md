@@ -2,7 +2,7 @@
 
 The MaskROM, which is 12 KiB long, contains all the logic required for the card reader to operate.
 
-- [Dump](MaskROM.bin)
+- [Dump](maskrom.lhex)
 
 ## ROM memory usage
 
@@ -57,22 +57,25 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
   * R6 <= byte2
   * R7 <= byte3
 
+- 0x604A: USB send stall
+  * R7 <= endpoint ID (0x00 = EP0, 0x01 = EP1.out, 0x81 = EP1.in)
+
 - 0x6A4F: USB indirect reg write
   * R5 <= data
   * R7 <= address
 
 - 0x6A95: copy XDATA into XDATA
   * R3 <= length
-  * R4 <= source addr 8..15
-  * R5 <= source addr 0..7
-  * R6 <= dest addr 8..15
-  * R7 <= dest addr 0..7
+  * R4 <= source addr (8..15)
+  * R5 <= source addr (0..7)
+  * R6 <= dest addr (8..15)
+  * R7 <= dest addr (0..7)
 
 - 0x6B6A: check the checksum (in SPI boot)
-  * R4 <= addr end 8..15
-  * R5 <= addr end 0..7
-  * R6 <= addr start 8..15
-  * R7 <= addr start 0..7
+  * R4 <= addr end (8..15)
+  * R5 <= addr end (0..7)
+  * R6 <= addr start (8..15)
+  * R7 <= addr start (0..7)
   * CY => checksum matches 0x5A
 
 - 0x6C5A: SPI send zero
@@ -94,8 +97,8 @@ The MaskROM, which is 12 KiB long, contains all the logic required for the card 
 
 - 0x6DB3: copy XDATA into IDATA
   * R3 <= length
-  * R4 <= source addr 8..15
-  * R5 <= source addr 0..7
+  * R4 <= source addr (8..15)
+  * R5 <= source addr (0..7)
   * R7 <= dest addr
 
 - 0x6DC4: USB indirect reg read

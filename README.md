@@ -6,6 +6,8 @@ Might be in some/many cheapo USB SD card readers, and stuff like that.
 
 ## General specs
 
+If you all wonder,
+
 - Intel 8051-compatible "RISC" MCU
   - 48 MHz clock speed
   - Weird mapping of the 8051's DATA into the SRAM (consistent with other chips like AX2226, etc)
@@ -24,9 +26,9 @@ Might be in some/many cheapo USB SD card readers, and stuff like that.
 
 ## Contents
 
-- [Internals info](infos.md)
-- [MaskROM](maskrom.md)
-- [SPIdrive](spidrive/index.md) - a flash drive that came with some mp3 strobo light thing
+- [Internals info](info/infos.md)
+- [MaskROM](info/maskrom.md)
+- [Some SPIDrive](spidrive/index.md) - a flash drive that came with some mp3 strobo light thing
 
 ```
 [89535.499960] dwmac-sun8i 1c30000.ethernet eth0: Link is Up - 100Mbps/Full - flow control off

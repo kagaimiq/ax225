@@ -1,5 +1,7 @@
 # USB
 
+It's basically a standard MUSB device controller with some DMA botched on top of it. (hello jieli & jianrong)
+
 ## Indirect reg dump
 
 ```
@@ -14,19 +16,19 @@
 70: 00 00 00 00 00 00 00 00 11 0A 00 00 00 00 00 00 
 ```
 
- - xx = reading breaks the USB transfer...
+- xx = reading this breaks the USB transfer (as this is the EP1 FIFO)
 
 ## Indirect reg access
 
 ```c
-void USB_IREG_Write(byte val, byte addr) {
+void musb_write(byte addr, byte val) {
 	sfrE2 = addr;
 	sfrE3 = val;
 	sfrE8 = 0x11;
 	while (!(sfrE8 & 0x80));
 }
 
-byte USB_IREG_Read(byte addr) {
+byte musb_read(byte addr) {
 	sfrE2 = addr;
 	sfrE8 = 0x31;
 	while (!(sfrE8 & 0x80));
